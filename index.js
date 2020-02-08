@@ -4,9 +4,7 @@ const config = {
 };
 
 const selection = [
-  0,
-  null,
-  zarr.slice(1,3)
+  null, zarr.slice(3,6), null
 ];
 
 (async () => {
@@ -18,7 +16,8 @@ const selection = [
   t.print();
 
   console.log('.getRaw')
-  const [data, shape] = await z.getRaw(selection);
+  const { data, shape } = await z.getRaw(selection);
   const t2 = tf.tensor(data, shape);
+  console.log(data)
   t2.print();
 })();

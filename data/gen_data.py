@@ -10,7 +10,7 @@ if __name__ == "__main__":
         mode="w",
         shape=arr.shape,
         compressor=Zlib(level=1),
-        chunks=(1, 3, 3),
+        chunks=(3, 3, 3),
         dtype="<i4",
     )
 
