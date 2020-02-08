@@ -5,17 +5,19 @@ const config = {
 
 const selection = [
   0,
-  zarr.slice(0,12),
   null,
+  zarr.slice(1,3)
 ];
 
 (async () => {
   const z = await zarr.openArray(config);
-  const raw = await z.get(selection);
-  console.log(raw);
-  console.log(z)
 
-  const t = tf.tensor(raw.flatten(), raw.shape);
+  console.log('.get')
+  const t2 = tf.tensor((await z.get(selection)).flatten(), raw.shape);
+  t2.print();
+
+  console.log('.getRaw')
+  const [data, shape] = await z.getRaw(selection);
+  const t = tf.tensor(data, shape);
   t.print();
-  console.log(t.shape)
 })();
