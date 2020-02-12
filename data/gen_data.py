@@ -3,7 +3,7 @@ from numcodecs import Zlib
 import zarr
 
 if __name__ == "__main__":
-    arr = np.arange(3 * 6 * 6).reshape(3, 6, 6)
+    arr = np.arange(3 * 12 * 6).reshape(3, 12, 6)
 
     z = zarr.open(
         "dummy_data.zarr",

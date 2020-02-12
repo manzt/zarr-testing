@@ -4,7 +4,7 @@ const config = {
 };
 
 const selection = [
-  null, zarr.slice(3,6), null
+  2, zarr.slice(4,12,2), zarr.slice(3,6)
 ];
 
 (async () => {
@@ -18,6 +18,18 @@ const selection = [
   console.log('.getRaw')
   const { data, shape } = await z.getRaw(selection);
   const t2 = tf.tensor(data, shape);
-  console.log(data)
   t2.print();
+
+  const div = document.getElementById("main");
+
+  const text = document.createTextNode(`
+  flatten nested: [${nestedArray.flatten()}]
+  \n
+  typed array: [${data}]`
+  );
+  div.appendChild(text);
+
+  console.log(
+    `Arrays are identical: ${JSON.stringify(nestedArray.flatten()) === JSON.stringify(data)}`
+  );
 })();
